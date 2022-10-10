@@ -37,11 +37,11 @@ class Employee:
     def __str__(self):
         if self.contract_type == "hourly":
             if self.commision_contracts > 0:
-                return f"{self.name} works on a contract of {self.hours} at {self.hourly_pay}/hour and receives a commision for {self.commision_contracts} contract(s) at {self.commision_hourly_pay}/contract. Their total pay is {self.get_pay()}."
+                return f"{self.name} works on a contract of {self.hours} hours at {self.hourly_pay}/hour and receives a commision for {self.commision_contracts} contract(s) at {self.commision_hourly_pay}/contract. Their total pay is {self.get_pay()}."
             elif self.commision_bonus > 0:
-                return f"{self.name} works on a contract of {self.hours} at {self.hourly_pay}/hour and receives a bonus commision of {self.commision_bonus}. Their total pay is {self.get_pay()}."
+                return f"{self.name} works on a contract of {self.hours} hours at {self.hourly_pay}/hour and receives a bonus commision of {self.commision_bonus}. Their total pay is {self.get_pay()}."
             else:
-                return f"{self.name} works on a contract of {self.hours} at {self.hourly_pay}/hour. Their total pay is {self.get_pay()}."
+                return f"{self.name} works on a contract of {self.hours} hours at {self.hourly_pay}/hour. Their total pay is {self.get_pay()}."
 
         if self.contract_type == "monthly":
             if self.commision_contracts > 0:

@@ -2,30 +2,56 @@
 """ENTER YOUR SOLUTION HERE!"""
 
 class Employee:
-    def __init__(self, name):
+    def __init__(self, name, contract_type = "", monthly_salary = 0, hours = 0, hourly_pay = 0, commision_bonus = 0, commision_contracts = 0, commision_hourly_pay = 0):
         self.name = name
+        self.contract_type = contract_type
+        self.monthly_salary = monthly_salary
+        self.hours = hours
+        self.hourly_pay = hourly_pay
+        self.commision_bonus = commision_bonus
+        self.commision_contracts = commision_contracts
+        self.commision_hourly_pay = commision_hourly_pay
+
+
+    def get_commision(self):
+        if self.commision_bonus != 0:
+            return self.commision_bonus
+
+        elif self.commision_hourly_pay != 0:
+            return self.commision_hourly_pay * self.commision_contracts
+
+        else:
+            return 0
+
+    def get_salary(self):
+        if self.contract_type == "hourly":
+            return self.hours * self.hourly_pay
+
+        elif self.contract_type == "monthly":
+            return self.monthly_salary
 
     def get_pay(self):
-        pass
+        return self.get_salary() + self.get_commision()
+
 
     def __str__(self):
-        return self.name
+        if self.contract_type == "hourly":
+            if self.commision_contracts > 0:
+                return f"{self.name} works on a contract of {self.hours} at {self.hourly_pay}/hour and receives a commision for {self.commision_contracts} contract(s) at {self.commision_hourly_pay}/contract. Their total pay is {self.get_pay()}.
+            elif self.commision_bonus > 0:
+                return f"{self.name} works on a contract of {self.hours} at {self.hourly_pay}/hour and receives a bonus commision of {self.commision_bonus}. Their total pay is {self.get_pay()}."
+            else:
+                return f"{self.name} works on a contract of {self.hours} at {self.hourly_pay}/hour. Their total pay is {self.get_pay()}"returneif self.contract_type == "monthly":
+            if self.commision_contracts > 0:
+                return f"{self.name} works on a monthly salary of {self.monthly_salary} and receives a commision for {self.commision_contracts} contract(s) at {self.commision_hourly_pay}/contract. Their total pay is {self.get_pay()}."
+            elif self.commision_bonus > 0:
+                return f"{self.name} works on a monthly salary of {self.monthly_salary} and receives bonus commision of {self.commision_bonus}. Their total pay is {self.get_pay()}."
+            else:
+                return f"{self.name} works on a monthly salary of {self.monthly_salary}. Their total pay is {self.get_pay()}."
 
-
-# Billie works on a monthly salary of 4000.  Their total pay is 4000.
-billie = Employee('Billie')
-
-# Charlie works on a contract of 100 hours at 25/hour.  Their total pay is 2500.
-charlie = Employee('Charlie')
-
-# Renee works on a monthly salary of 3000 and receives a commission for 4 contract(s) at 200/contract.  Their total pay is 3800.
-renee = Employee('Renee')
-
-# Jan works on a contract of 150 hours at 25/hour and receives a commission for 3 contract(s) at 220/contract.  Their total pay is 4410.
-jan = Employee('Jan')
-
-# Robbie works on a monthly salary of 2000 and receives a bonus commission of 1500.  Their total pay is 3500.
-robbie = Employee('Robbie')
-
-# Ariel works on a contract of 120 hours at 30/hour and receives a bonus commission of 600.  Their total pay is 4200.
-ariel = Employee('Ariel')
+billie = Employee("Billie", contract_type = "monthly", monthly_salary = 4000)
+charlie = Employee("Charlie", contract_type = "hourly", hours = 100, hourly_pay = 25)
+renee = Employee("Renee", contract_type = "monthly", monthly_salary = 3000, commision_contracts = 4, commision_hourly_pay = 200)
+jan = Employee("Jan", contract_type = "hourly", hours = 150, hourly_pay = 25, commision_contracts = 3, commision_hourly_pay = 220)
+robbie = Employee("Robbie", contract_type = "monthly", monthly_salary = 2000, commision_bonus = 1500)
+ariel = Employee("Ariel", contract_type = "hourly", hours = 120, hourly_pay = 30, commision_bonus = 600)
